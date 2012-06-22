@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MovieJacket</class>
+ <widget class="QMainWindow" name="MovieJacket">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>684</width>
+    <height>341</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MovieJacket</string>
+  </property>
+  <widget class="QWidget" name="FenetreCentrale">
+   <widget class="QTextEdit" name="textBox1">
+    <property name="geometry">
+     <rect>
+      <x>12</x>
+      <y>12</y>
+      <width>318</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <pointsize>8</pointsize>
+     </font>
+    </property>
+   </widget>
+   <widget class="QListView" name="listBox1">
+    <property name="geometry">
+     <rect>
+      <x>12</x>
+      <y>184</y>
+      <width>318</width>
+      <height>134</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <pointsize>8</pointsize>
+     </font>
+    </property>
+   </widget>
+   <widget class="QListView" name="listBox2">
+    <property name="geometry">
+     <rect>
+      <x>339</x>
+      <y>324</y>
+      <width>333</width>
+      <height>69</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <pointsize>8</pointsize>
+     </font>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="button1">
+    <property name="geometry">
+     <rect>
+      <x>597</x>
+      <y>12</y>
+      <width>75</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Start</string>
+    </property>
+   </widget>
+   <widget class="QListView" name="listBox3">
+    <property name="geometry">
+     <rect>
+      <x>12</x>
+      <y>324</y>
+      <width>321</width>
+      <height>69</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QListView" name="listBox4">
+    <property name="geometry">
+     <rect>
+      <x>339</x>
+      <y>54</y>
+      <width>183</width>
+      <height>264</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QListView" name="listBox5">
+    <property name="geometry">
+     <rect>
+      <x>528</x>
+      <y>54</y>
+      <width>144</width>
+      <height>108</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QListView" name="listBox6">
+    <property name="geometry">
+     <rect>
+      <x>528</x>
+      <y>181</y>
+      <width>144</width>
+      <height>134</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QListWidget" name="checkedListBox1">
+    <property name="geometry">
+     <rect>
+      <x>12</x>
+      <y>42</y>
+      <width>318</width>
+      <height>137</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QProgressBar" name="progressBar1">
+    <property name="geometry">
+     <rect>
+      <x>340</x>
+      <y>12</y>
+      <width>241</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="value">
+     <number>24</number>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QStatusBar" name="statusBar"/>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources/>
+ <connections/>
+</ui>

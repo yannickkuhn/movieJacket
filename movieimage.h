@@ -25,12 +25,15 @@ private:
     QByteArray bytes;
     int Request;
     QImage imgPict;
+    QPainter *p;
 
     void paintEvent(QPaintEvent *e);
     void grab();
+    void setPropertiesFont(QPainter *p, int pixelSize, bool enable);
 public:
     QHttp *http;
     void setVars(QString fileName, QString title, QString synopsis, QString runtime, QString releaseDate, QString pressRating, QString directors, QString actors, QString urlPoster);
+    ~MovieImage();
 signals:
     
 public slots:
@@ -39,6 +42,7 @@ public slots:
             imgPict.loadFromData(bytes);
             this->update();
             this->grab();
+            this->deleteLater();
         }
     }
 };

@@ -8,71 +8,61 @@ MovieImage::MovieImage(QWidget *parent) :
 
 void MovieImage::paintEvent(QPaintEvent *e)
 {
-    QPainter p(this);
-    QImage *img2 = new QImage("image2.jpg");
-    QImage *img4 = new QImage("etoile.png");
-    QImage *img5 = new QImage("etoileJaune.png");
+    p = new QPainter(this);
+    QImage *img;
     QFont font("arial",43, QFont::Bold);
-    QFont font8("arial",16, QFont::Bold);
-    QFont font1("arial",10, QFont::Normal);
-    QFont font2("arial",10, QFont::Black);
-    QFont font3("arial",20, QFont::Black);
-    QFont font4("arial",18, QFont::Black);
-    QFont font5("arial",13, QFont::Black);
-    QFont font6("arial",13, QFont::Bold);
-    QFont font7("arial",10, QFont::Bold);
-    //img1->scaled(1400,1000);
-    QImage *img = new QImage("design.png");
 
-    p.drawImage(0,0,img2->scaledToWidth(1224));
-    p.drawImage(0,0,*img);
-    p.drawImage(80,357,imgPict.scaled(268,375));
+    // -- images --
 
+    img = new QImage("image2.jpg");
+    p->drawImage(0,0,img->scaledToWidth(1224));
+    delete(img);    // fuite memoire
+    img = new QImage("design.png");
+    p->drawImage(0,0,*img);
+    p->drawImage(80,357,imgPict.scaled(268,375));
+    delete(img);    // fuite memoire
     int i, j;
     j = this->pressRating.toDouble();
     for(i=0;i<5;i++)
     {
         if(i < j)
-            p.drawImage(397+i*30,462,*img5);
+            img = new QImage("etoileJaune.png");
         else
-            p.drawImage(397+i*30,462,*img4);
+            img = new QImage("etoile.png");
+        p->drawImage(397+i*30,462,*img);
+        delete(img);    // fuite memoire
     }
 
+    // -- ecritures --
 
-
-    // le titre
+    p->setFont(font);
     if(this->title.size() < 10)
-        p.setFont(font);
+        setPropertiesFont(p,43,QFont::Bold);
     else
-        p.setFont(font8);
+        setPropertiesFont(p,16,QFont::Bold);
+    p->drawText(403,453,title);
+    setPropertiesFont(p,10,QFont::Normal);
+    p->drawText(817,479,runtime);
+    p->drawText(917,479,releaseYear);
+    p->drawText(810,532,200,200,Qt::AlignLeft,directors);
+    p->drawText(810,595,200,200,Qt::AlignLeft,actors);
+    setPropertiesFont(p,20,QFont::Black);
+    p->drawText(408,711,"16:9");
+    p->drawText(504,711,"24.");
+    p->drawText(772,711,"AVC");
+    p->drawText(860,711,"MKV");
+    setPropertiesFont(p,10,QFont::Bold);
+    p->drawText(542,698,tr("Hz"));
+    setPropertiesFont(p,13,QFont::Bold);
+    p->drawText(542,712,tr("00"));
+    setPropertiesFont(p,18,QFont::Black);
+    p->drawText(584,709,"1080p");
+    setPropertiesFont(p,10,QFont::Black);
+    p->drawText(403,500,364,136,Qt::AlignLeft | Qt::TextWordWrap, synopsis);
+    setPropertiesFont(p,13,QFont::Black);
+    p->drawText(427,657,"FR");
 
-    p.drawText(403,453,title);
-
-    p.setFont(font1);
-    p.drawText(817,479,runtime);
-    p.drawText(917,479,releaseYear);
-    p.drawText(810,532,200,200,Qt::AlignLeft,directors);
-    p.drawText(810,595,200,200,Qt::AlignLeft,actors);
-
-    p.setFont(font3);
-    p.drawText(408,711,"16:9");
-    p.drawText(504,711,"24.");
-    p.drawText(772,711,"AVC");
-    p.drawText(860,711,"MKV");
-
-    p.setFont(font7);
-    p.drawText(542,698,tr("Hz"));
-    p.setFont(font6);
-    p.drawText(542,712,tr("00"));
-
-    p.setFont(font4);
-    p.drawText(584,709,"1080p");
-
-    p.setFont(font2);
-    p.drawText(403,500,364,136,Qt::AlignLeft | Qt::TextWordWrap, synopsis);
-
-    p.setFont(font5);
-    p.drawText(427,657,"FR");
+    p->end();
 }
 
 // fait une capture d'ecran des informations récupérées du film
@@ -125,4 +115,14 @@ void MovieImage::setVars(QString fileName, QString title, QString synopsis, QStr
     buffer->open(QIODevice::WriteOnly);
     http->setHost(url.host());
     Request=http->get (url.path(),buffer);
+}
+
+void MovieImage::setPropertiesFont(QPainter *p, int pixelSize, bool enable)
+{
+    QFont font("arial",pixelSize,enable);
+    p->setFont(font);
+}
+
+MovieImage::~MovieImage()
+{
 }

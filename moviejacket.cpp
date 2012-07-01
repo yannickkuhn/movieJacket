@@ -12,9 +12,9 @@ MovieJacket::MovieJacket(QWidget *parent) :
 
     logger.setFileName("log_movieJacket.txt");
     if (!logger.open(QIODevice::WriteOnly | QIODevice::Text))
-        QMessageBox::information(this,"fichier","fichier de log n'a pas pu etre ouvert !");
+        QMessageBox::information(this,"fichier","Le fichier de log n'a pas pu etre ouvert !");
 
-    writeLog("debut de l'application ...");
+    writeLog("Début de l'application ...");
 }
 
 // initialisation des listes 4,5 et 6
@@ -99,7 +99,6 @@ void MovieJacket::button1Click()
 
         QString nameOfMovie;
         nameOfMovie = listTxtBox3->at(0);
-        QMessageBox::information(this,"",nameOfMovie);
         allocineSearch(nameOfMovie);
     }
 }
@@ -312,10 +311,9 @@ void MovieJacket::readDataMovie(QNetworkReply *r)
     if(title != "" && synopsisShort != "" && runtime != "" && releaseDate != "" && directors != "" && actors != "")
     {
         writeLog("(movie) on creer un movieImage ...");
-        MovieImage *img = new MovieImage();
+        MovieImage *img = new MovieImage(this);
         img->setVars(listTxtBox2->at(indice), title, synopsisShort, runtime, releaseDate, pressRating, directors, actors, urlPoster);
         connect(img->http,SIGNAL(dataReadProgress(int,int)),this,SLOT(downloadBar(int,int)));
-        //img->show();
 
         if(indice < listTxtBox3->count() - 1) {
             QString nameOfMovie;
